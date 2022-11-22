@@ -1,0 +1,19 @@
+source: https://github.com/kevinam99/capturing-images-from-webcam-using-opencv-python
+
+How to use:
+Run the file webcam-capture-v1.01.py by running the command python3 webcam-capture-v1.01.py
+The webcam will start running.
+Bring the picture that you want to save in the webcam frame.
+Once the object is in the right frame, press the key 's' to save a picture.
+If you want to quit, just press 'q'.
+After hitting 's' to save the picture,you will get a view of the saved image which will automatically close in 1.6s and a new image file will be created in the same directory as that of the program. The image will be saved as saved_image.jpg
+The file saved_image is furthered converted to grayscale and then resized to 28x28 size for further use in relevant programs, for example, machine learning, which was my primary requirement of creating this file.
+
+Other sources for OpenCV:
+https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
+https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html
+https://www.tutorialspoint.com/opencv/opencv_median_blur.htm
+Diff btw Median Blurr and Gausian Blurr: 
+Applying a Gaussian blur is better at preserving edges, but is slightly slower than the average method. A median filter is primarily used to reduce salt-and-pepper style noise as the median statistic is much more robust and less sensitive to outliers than other statistical methods such as the mean.
+https://docs.opencv.org/4.x/d7/d1b/group__imgproc__misc.html#ga72b913f352e4a1b1b397736707afcde3
+

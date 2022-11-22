@@ -21,10 +21,17 @@ while True:
             print("Converting RGB image to grayscale...")
             gray = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
             print("Converted RGB image to grayscale...")
-            print("Resizing image to 28x28 scale...")
-            img_ = cv2.resize(gray,(28,28))
-            print("Resized...")
-            img_resized = cv2.imwrite(filename='saved_img-final.jpg', img=img_)
+            # print("Resizing image to 28x28 scale...")
+            # img_ = cv2.resize(gray,(28,28))
+            # print("Resized...")
+            # My code here:
+            img_deblured = cv2.medianBlur(gray,11)
+            ret,thresh1 = cv2.threshold(img_deblured,75,255,cv2.THRESH_BINARY)
+            # thresh2_adap_gaus = cv2.adaptiveThreshold(img_deblured,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            # cv2.THRESH_BINARY,11,2)
+            ###
+            img_done = cv2.imwrite(filename='saved_img-final_thresh1.jpg', img=thresh1)
+            # img_done2 = cv2.imwrite(filename='saved_img-final_thresh2Adaptive.jpg', img=thresh2_adap_gaus)
             print("Image saved!")
         
             break
