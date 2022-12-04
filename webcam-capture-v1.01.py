@@ -32,6 +32,8 @@ while True:
             ###
             img_done = cv2.imwrite(filename='saved_img-final_thresh1.jpg', img=thresh1)
             # img_done2 = cv2.imwrite(filename='saved_img-final_thresh2Adaptive.jpg', img=thresh2_adap_gaus)
+            dim = (115, 115)
+            img_resized = cv2.resize(img_done, dim, interpolation = cv2.INTER_AREA)
             print("Image saved!")
         
             break
