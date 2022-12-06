@@ -30,10 +30,10 @@ while True:
             # thresh2_adap_gaus = cv2.adaptiveThreshold(img_deblured,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
             # cv2.THRESH_BINARY,11,2)
             ###
-            img_done = cv2.imwrite(filename='saved_img-final_thresh1.jpg', img=thresh1)
             # img_done2 = cv2.imwrite(filename='saved_img-final_thresh2Adaptive.jpg', img=thresh2_adap_gaus)
-            dim = (115, 115)
-            img_resized = cv2.resize(img_done, dim, interpolation = cv2.INTER_AREA)
+            dim = (150, 150)
+            img_resized = cv2.resize(thresh1, dim, interpolation = cv2.INTER_AREA)
+            img_done = cv2.imwrite(filename='saved_img_final.jpg', img=img_resized)
             print("Image saved!")
         
             break
