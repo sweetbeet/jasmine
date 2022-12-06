@@ -8,7 +8,8 @@ import webcamPreprocess
 webcamPreprocess.preProcess()
 ## Press s on the terminal to save the photo and run preprocessing
 ## Saves the final image as "saved_img_final.jpg"
-webcamProcessedImg = cv2.imread("saved_img_final.jpg")
+webcamProcessedImg = cv2.imread("saved_img_final.jpg", cv2.IMREAD_UNCHANGED)
+# thresh_image = webcamProcessedImg.astype(np.uint8)
 
 """ # previous code
 img = cv2.imread(r"C:sersuhaiycharmProjectsJasminUntitled.png") ## image path
@@ -29,7 +30,7 @@ cv2.waitKey(0)
 contours, hierarchy = cv2.findContours(webcamProcessedImg, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 print(contours)
 #create an empty image for contours
-image = np.zeros(img.shape)
+image = np.zeros(webcamProcessedImg.shape)
 print(len(contours))
 # draw the contours on the empty image
 cv2.drawContours(image, contours, -1, (0,255,0), 1)
