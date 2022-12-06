@@ -8,10 +8,10 @@ import webcamPreprocess
 webcamPreprocess.preProcess()
 ## Press s on the terminal to save the photo and run preprocessing
 ## Saves the final image as "saved_img_final.jpg"
-
+webcamProcessedImg = cv2.imread("saved_img_final.jpg")
 
 """ # previous code
-img = cv2.imread(r"C:\Users\suhai\PycharmProjects\Jasmin\Untitled.png") ## image path
+img = cv2.imread(r"C:sersuhaiycharmProjectsJasminUntitled.png") ## image path
 dim = (150, 150)
 img = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
 #convert img to grey
@@ -26,7 +26,7 @@ cv2.waitKey(0)
 
 
 #find contours
-contours, hierarchy = cv2.findContours(thresh_img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+contours, hierarchy = cv2.findContours(webcamProcessedImg, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 print(contours)
 #create an empty image for contours
 image = np.zeros(img.shape)
