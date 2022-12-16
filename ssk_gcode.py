@@ -5,10 +5,12 @@ import numpy as np
 import webcamPreprocess
 
 
-webcamPreprocess.preProcess()
-## Press s on the terminal to save the photo and run preprocessing
-## Saves the final image as "saved_img_final.jpg"
-webcamProcessedImg = cv2.imread("saved_img_final.jpg", cv2.IMREAD_UNCHANGED)
+# webcamPreprocess.preProcess()
+# ## Press s on the terminal to save the photo and run preprocessing
+# ## Saves the final image as "saved_img_final.jpg"
+# webcamProcessedImg = cv2.imread("saved_img_final.jpg", cv2.IMREAD_UNCHANGED)
+# cv2.imshow('Contours', webcamProcessedImg)
+# cv2.waitKey(0)
 # thresh_image = webcamProcessedImg.astype(np.uint8)
 
 """ # previous code
@@ -27,18 +29,19 @@ cv2.waitKey(0)
 
 
 #find contours
-contours, hierarchy = cv2.findContours(webcamProcessedImg, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-print(contours)
-#create an empty image for contours
-image = np.zeros(webcamProcessedImg.shape)
-print(len(contours))
-# draw the contours on the empty image
-cv2.drawContours(image, contours, -1, (0,255,0), 1)
-#save image
-cv2.imshow('Contours', image)
-cv2.waitKey(0)
-x_scaler = img.shape[1] / 150
-y_scaler = img.shape[0] / 150
+# contours, hierarchy = cv2.findContours(webcamProcessedImg, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+# print(contours)
+# #create an empty image for contours
+# image = np.zeros(webcamProcessedImg.shape)
+# print(len(contours))
+# # draw the contours on the empty image
+# cv2.drawContours(image, contours, -1, (0,255,0), 3)
+# #save image
+# cv2.imshow('Contours', image)
+# cv2.waitKey(0)
+contours,Img_shape = webcamPreprocess.preProcess()
+x_scaler = Img_shape[1] / 150
+y_scaler = Img_shape[0] / 150
 scaler = max(x_scaler, y_scaler)
 left_x = 0
 left_y = 0
@@ -50,6 +53,7 @@ for contour in contours:
     gcode = gcode + f"G00 X{contours[j][0][0][0] / scaler + left_x} Y{contours[j][0][0][1] / scaler + left_y};\n"
     # print(len(contour))
     gcode = gcode + f"M03 S0 \n"
+    gcode = gcode + f"G04 P1\n"
     while i < len(contour):
         x = contour[i][0][0] / scaler
         y = contour[i][0][1] / scaler
@@ -57,6 +61,7 @@ for contour in contours:
         gcode = gcode + code
         i = i + 1
     gcode = gcode + f"M03 S250 \n"
+    gcode = gcode + f"G04 P1 \n"
     if j<=len(contours):
         j=j+1
 gcode = gcode + f"G00 X0 Y0"
